@@ -1,0 +1,256 @@
+/* filepath: /Users/michaelrobards/Documents/Projects/ztm/vibe-coding/news-reader/web/src/styles.css */
+:root {
+  --bg-color: #333;
+  --card-bg: #1e1e1e;
+  --text-primary: #fff;
+  --text-secondary: #aaa;
+  --accent: #e74c3c; /* Reddish accent like Flipboard */
+  --font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  overflow-x: hidden;
+}
+
+.app-container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #222;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #444;
+}
+
+.sidebar h1 {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+.filter-section {
+  margin-bottom: 30px;
+}
+
+.filter-section h3 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+
+.category-list {
+  list-style: none;
+  padding: 0;
+}
+
+.category-list li {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.2s;
+}
+
+.category-list li:hover,
+.category-list li.active {
+  background-color: #444;
+  color: var(--accent);
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px;
+  background: #333;
+  border: 1px solid #555;
+  color: white;
+  border-radius: 4px;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.article-viewer {
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+}
+
+.article-card {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.5s ease;
+  position: relative;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.article-image {
+  width: 100%;
+  height: 400px; /* Large featured image */
+  object-fit: cover;
+}
+
+.article-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  padding: 40px 30px 20px;
+}
+
+.article-source {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.article-title {
+  font-size: 2rem;
+  margin: 0 0 10px;
+  line-height: 1.2;
+}
+
+.article-snippet {
+  color: #ddd;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.article-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.read-more {
+  background: var(--accent);
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.fav-btn {
+  background: transparent;
+  border: 1px solid #666;
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.fav-btn.active {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.pagination-controls {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 10px 20px;
+  border-radius: 30px;
+}
+
+.page-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 5px;
+}
+
+.page-btn:hover {
+  color: white;
+}
+
+.page-indicator {
+  font-weight: bold;
+  color: white;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+  }
+
+  .filter-section {
+    display: none; /* Hide filters initially on mobile for simplicity, or add toggle */
+  }
+
+  /* Simple mobile menu toggle logic would go here, 
+     but for this single-view requirement, we keep it simple */
+  .sidebar.mobile-open .filter-section {
+    display: block;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: #222;
+    z-index: 100;
+    padding: 20px;
+  }
+
+  .article-title {
+    font-size: 1.5rem;
+  }
+
+  .article-image {
+    height: 300px;
+  }
+}
