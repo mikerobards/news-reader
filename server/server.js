@@ -17,8 +17,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/', (req, res) => {
-  res.send('News Reader API is active. Frontend is running on a different port (usually 5173).');
+app.get("/", (req, res) => {
+  res.send(
+    "News Reader API is active. Frontend is running on a different port (usually 5173).",
+  );
 });
 
 app.get("/api/news", async (req, res) => {
@@ -41,6 +43,7 @@ app.get("/api/news", async (req, res) => {
   // Filter logic: If search exists, ignore categories
   if (search) {
     params.search = search;
+    params.sort = "published_at";
   } else {
     params.categories = categoryParam;
   }
