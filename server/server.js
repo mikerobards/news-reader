@@ -74,6 +74,12 @@ app.get("/api/news", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+// Export the Express API
+module.exports = app;
+
+// Only listen when running locally (not in Vercel serverless environment)
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+  });
+}
